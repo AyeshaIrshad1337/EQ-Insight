@@ -8,7 +8,7 @@ content_generator = ContentGenerator()
 
 current_question_index = 0
 
-@app.route('/generate-interview-question', methods=['GET', 'POST'])
+@app.route('/generate-interview-question', methods=['POST'])
 def generate_interview_question():
     global current_question_index
 
@@ -24,7 +24,7 @@ def generate_interview_question():
 
     return jsonify({'error': 'Invalid request'}), 400
 
-@app.route('/submit-answer', methods=['GET', 'POST'])
+@app.route('/submit-answer', methods=['POST'])
 def submit_answer():
     if request.method == 'POST':
         answer = request.json.get('answer', '')
@@ -37,4 +37,4 @@ def submit_answer():
     return jsonify({'error': 'Invalid request'}), 400
 
 # if __name__ == '__main__':
-#     app.run(debug=True)  
+#     app.run(debug=True)

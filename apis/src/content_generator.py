@@ -9,7 +9,7 @@ from src.CREDS import GOOGLE_GEMINI_API_KEY
 if not GOOGLE_GEMINI_API_KEY or GOOGLE_GEMINI_API_KEY == "YOUR_API_KEY_HERE":
     raise ValueError("Please set the GOOGLE_GEMINI_API_KEY in src.CREDS.py")
 
-os.environ["GOOGLE_API_KEY"] = GOOGLE_GEMINI_API_KEY
+# os.environ["GOOGLE_API_KEY"] = GOOGLE_GEMINI_API_KEY
 
 import random
 import logging
