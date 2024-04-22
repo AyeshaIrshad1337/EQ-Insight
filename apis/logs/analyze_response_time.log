@@ -38,3 +38,7 @@
 2024-04-22 08:46:23,955 - analyze_response_time - INFO - Function: analyze_response, Execution time: 3.34554 seconds
 2024-04-22 08:46:31,540 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.62551 seconds
 2024-04-22 08:46:31,540 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.62551 seconds
+2024-04-22 14:49:34,666 - analyze_response_time - INFO - Function: analyze_response, Execution time: 1.61384 seconds
+2024-04-22 14:52:26,585 - analyze_response_time - INFO - Function: analyze_response, Execution time: 2.12112 seconds
+2024-04-22 14:57:35,136 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.74022 seconds
+2024-04-22 14:57:35,136 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.74022 seconds

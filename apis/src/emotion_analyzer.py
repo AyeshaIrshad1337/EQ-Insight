@@ -35,10 +35,10 @@ class EmotionAnalyzer:
         """
         result = self.emotion_pipeline(text)
         logger_all = Logger("all_results", see_time=True)
-        logger_all.log_message(f"Detected emotions: {result}")
         
         emotions = [(emotion["label"], emotion["score"]) for emotion in result[0]]
         emotions = sorted(emotions, key=lambda x: x[1], reverse=True)
+        logger_all.log_message(f"Detected emotions: {emotions}")
         
         return emotions
     
