@@ -51,6 +51,10 @@ class ContentGenerator:
             str: Cleaned question text
         """
         cleaned_ques = re.sub(r'\"[^\w\s]\"', '', question)
+        cleaned_ques = re.sub(r'\*\*([^*]{0,10}?\b\w+\b[^*]{0,50}?)\*\*', '', cleaned_ques)
+        cleaned_ques = cleaned_ques.replace('"', '')
+        cleaned_ques = cleaned_ques.replace("\n", " ")
+        cleaned_ques = cleaned_ques.replace("*", " ")
         return cleaned_ques
     
     def generate_emotion(self) -> str:
@@ -103,20 +107,29 @@ class ContentGenerator:
             self.logger.log_message(f"Question for emotion '{emotion}': {question}\nAnswer: {user_answer}", level=logging.DEBUG)
             if user_answer.lower() == "no":
                 break
-            score = self.emotion_analyzer.analyze_response_emotion(emotion, user_answer)
-            if emotion in self.positive_emotions:
+            top_emotion, score = self.emotion_analyzer.analyze_response_emotion(emotion, user_answer)
+            if emotion in self.positive_emotions and top_emotion in self.positive_emotions:
                 if score >= 0.5:  # Positive response to positive emotion
                     current_score = score * 100.0  # Good score
                 else:  # Negative response to positive emotion
                     current_score = score * -50.0  # Bad score
-            elif emotion in self.negative_emotions:
-                if score >= 0.5:  # Positive response to negative emotion
-                    current_score = score * -100.0  # Bad score
-                else:  # Negative response to negative emotion
-                    current_score = score * 50.0  # Good score
+            elif emotion in self.positive_emotions and top_emotion in self.negative_emotions:
+                if score >= 0.5:
+                    current_score = score * -100.0
+                else:
+                    current_score = score * 50.0
+            elif emotion in self.negative_emotions and top_emotion in self.negative_emotions:
+                if score >= 0.5:
+                    current_score = score * -100.0
+                else:
+                    current_score = score * 50.0
+            elif emotion in self.negative_emotions and top_emotion in self.positive_emotions:
+                if score >= 0.5:
+                    current_score = score * 100.0
+                else:
+                    current_score = score * -50.0
             else:  # Neutral emotion
                 current_score = score * 75.0  # Neutral score
-            current_score = score * 100.0 
             total_score += current_score / (i + 1)
             self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
             self.score_logger.log_message(f"Total score: {total_score:.2f}%")
@@ -140,7 +153,7 @@ class ContentGenerator:
             return "No more questions."
 
         emotion = self.emotions[question_index]
-        prompt = f"Based on the emotion '{emotion}', what behavioral question would you ask related to this job?\n\nJob Description:\n{job_desc}\n\n"
+        prompt = f"Suppose you are conducting an behavorial interview, based on the emotion '{emotion}', you just have to ask a behavioral question (no headings, just a single question) related to this job?\n\nJob Description:\n{job_desc}\n\n"
         question = self.model.generate_content(prompt).text
         cleaned_question = self.clean_question(question)
         return emotion, cleaned_question
@@ -156,21 +169,30 @@ class ContentGenerator:
         Returns:
             float: The score for the answer.
         """
-        score = self.emotion_analyzer.analyze_response_emotion(emotion, answer)
-        print(score)
-        if emotion in self.positive_emotions:
+        top_emotion, score = self.emotion_analyzer.analyze_response_emotion(answer)
+        print(top_emotion, score)
+        if emotion in self.positive_emotions and top_emotion in self.positive_emotions:
             if score >= 0.5:  # Positive response to positive emotion
                 current_score = score * 100.0  # Good score
             else:  # Negative response to positive emotion
                 current_score = score * -50.0  # Bad score
-        elif emotion in self.negative_emotions:
-            if score >= 0.5:  # Positive response to negative emotion
-                current_score = score * -100.0  # Bad score
-            else:  # Negative response to negative emotion
-                current_score = score * 50.0  # Good score
+        elif emotion in self.positive_emotions and top_emotion in self.negative_emotions:
+            if score >= 0.5:
+                current_score = score * -100.0
+            else:
+                current_score = score * 50.0
+        elif emotion in self.negative_emotions and top_emotion in self.negative_emotions:
+            if score >= 0.5:
+                current_score = score * -100.0
+            else:
+                current_score = score * 50.0
+        elif emotion in self.negative_emotions and top_emotion in self.positive_emotions:
+            if score >= 0.5:
+                current_score = score * 100.0
+            else:
+                current_score = score * -50.0
         else:  # Neutral emotion
-            current_score = score * 75.0  # Neutral score
-        # current_score = score * 100.0 
+            current_score = score * 75.0  if score is not None else 0.0
         self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
         print(current_score)
         return current_score
@@ -200,4 +222,6 @@ Seeking a Software Engineer to develop high-quality software solutions in collab
 **How to Apply:**
 Submit resume and cover letter to [Contact Information].
 """
-    content_generator.interview_question(job_desc)
+    emotion, question = content_generator.interview_question(job_desc, 1)
+    answer = input("Enter: ")
+    print(content_generator.score_answer(emotion, answer))

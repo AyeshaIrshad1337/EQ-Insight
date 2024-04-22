@@ -87,9 +87,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-.error-msg {
-  color: #dc3545;
-}
 
 .question-container {
   margin-top: 20px;
@@ -100,3 +97,66 @@ button:hover {
   border-top: 1px solid #ccc;
   padding-top: 20px;
 }
+
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+.preview-panel {
+  padding: 20px;
+  max-width: fit-content;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-description-preview {
+  max-height: 300px; 
+  overflow-y: auto; 
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease;
+}
+
+iframe#webpack-dev-server-client-overlay{display:none!important}
+
