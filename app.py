@@ -5,15 +5,18 @@ from src.content_generator import ContentGenerator
 app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
 content_generator = ContentGenerator()
+current_question_index = 0
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# NOT DEFINED
 @app.route('/hr')
 def hr_portal():
     return render_template('hr_portal.html')
 
+# NOT DEFINED
 @app.route('/students')
 def student_interviews():
     return render_template('student_interviews.html')
@@ -22,13 +25,12 @@ def student_interviews():
 @app.route('/generate-interview-question', methods=['POST'])
 def generate_interview_question():
     global current_question_index
-
     if request.method == 'POST':
         job_description = request.json.get('job_description', '')
 
         if job_description:
             emotion, question = content_generator.interview_question(job_description, current_question_index)
-            
+            print("-->> ",current_question_index, emotion)
             current_question_index += 1
 
             return jsonify({"emotion": emotion, 'question': question}), 200

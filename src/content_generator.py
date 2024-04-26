@@ -55,6 +55,11 @@ class ContentGenerator:
         cleaned_ques = cleaned_ques.replace('"', '')
         cleaned_ques = cleaned_ques.replace("\n", " ")
         cleaned_ques = cleaned_ques.replace("*", " ")
+        # check if there are atmost 3 words before a comma, if so then remove till the comma
+        print(cleaned_ques)
+        cleaned_ques = re.sub(r'^(\w+[ ]?),', '', cleaned_ques)
+        print(cleaned_ques)
+
         return cleaned_ques
     
     def generate_emotion(self) -> str:

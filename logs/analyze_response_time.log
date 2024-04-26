@@ -42,3 +42,7 @@
 2024-04-22 14:52:26,585 - analyze_response_time - INFO - Function: analyze_response, Execution time: 2.12112 seconds
 2024-04-22 14:57:35,136 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.74022 seconds
 2024-04-22 14:57:35,136 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.74022 seconds
+2024-04-27 00:05:36,651 - analyze_response_time - INFO - Function: analyze_response, Execution time: 1.94405 seconds
+2024-04-27 00:39:04,733 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.6989 seconds
+2024-04-27 00:39:52,240 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.57925 seconds
+2024-04-27 00:39:52,240 - analyze_response_time - INFO - Function: analyze_response, Execution time: 0.57925 seconds

@@ -3,23 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Portal</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Interview Portal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Home</a>
-        <div class="navbar-nav">
-            <a class="nav-link" href="/hr">HR Portal</a>
-            <a class="nav-link" href="/students">Student Interviews</a>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center mb-4">Interview Portal</h2>
+                <form id="jobForm">
+                    <div class="form-group">
+                        <label for="jobDescription">Upload Job Description:</label>
+                        <textarea class="form-control" id="jobDescription" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Start Interview</button>
+                </form>
+                <hr>
+                <div id="interviewQuestion" class="d-none">
+                    <h3 class="text-center mb-3">Interview Question</h3>
+                    <p id="question" class="text-center"></p>
+                    <div class="form-group">
+                        <label for="answer">Your Answer:</label>
+                        <textarea class="form-control" id="answer" rows="3"></textarea>
+                    </div>
+                    <button id="submitAnswer" class="btn btn-success btn-block">Submit Answer</button>
+                </div>
+            </div>
         </div>
-    </nav>
-    <div class="container mt-4">
-        <h1>Welcome to the HR and Student Interview Portal</h1>
-        <p>Select a section to proceed.</p>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#jobForm").submit(function (event) {
+                event.preventDefault();
+                var jobDescription = $("#jobDescription").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/generate-interview-question",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "job_description": jobDescription }),
+                    success: function (response) {
+                        $("#question").text(response.question);
+                        $("#interviewQuestion").removeClass("d-none");
+                    },
+                    error: function () {
+                        alert("Failed to generate interview question.");
+                    }
+                });
+            });
+
+            $("#submitAnswer").click(function () {
+                var answer = $("#answer").val();
+                var emotion = ""; // You can get emotion from UI if needed
+                $.ajax({
+                    type: "POST",
+                    url: "/submit-answer",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "answer": answer, "emotion": emotion }),
+                    success: function (response) {
+                        alert("Your score: " + response.score);
+                    },
+                    error: function () {
+                        alert("Failed to submit answer.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
