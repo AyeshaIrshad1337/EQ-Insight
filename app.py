@@ -1,12 +1,23 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from src.content_generator import ContentGenerator
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
 content_generator = ContentGenerator()
 
-current_question_index = 0
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/hr')
+def hr_portal():
+    return render_template('hr_portal.html')
+
+@app.route('/students')
+def student_interviews():
+    return render_template('student_interviews.html')
+
 
 @app.route('/generate-interview-question', methods=['POST'])
 def generate_interview_question():
@@ -36,5 +47,5 @@ def submit_answer():
 
     return jsonify({'error': 'Invalid request'}), 400
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

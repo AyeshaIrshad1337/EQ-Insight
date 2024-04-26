@@ -43,3 +43,6 @@
 2024-04-22 11:16:31,375 - __init___time - INFO - Function: __init__, Execution time: 12.49652 seconds
 2024-04-22 14:49:07,466 - __init___time - INFO - Function: __init__, Execution time: 46.04626 seconds
 2024-04-22 14:52:01,659 - __init___time - INFO - Function: __init__, Execution time: 17.03135 seconds
+2024-04-26 23:43:34,879 - __init___time - INFO - Function: __init__, Execution time: 23.60002 seconds
+2024-04-26 23:44:05,382 - __init___time - INFO - Function: __init__, Execution time: 6.46016 seconds
+2024-04-26 23:48:00,694 - __init___time - INFO - Function: __init__, Execution time: 8.45599 seconds
