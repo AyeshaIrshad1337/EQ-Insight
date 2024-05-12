@@ -39,7 +39,7 @@
                         <a class="nav-link" aria-current="page" onclick="window.location.href='/'">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jobs</a>
+                        <a class="nav-link" href="/jobs_stud">Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" onclick="window.location.href='/our_team'">Our Team</a>
@@ -240,7 +240,32 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveJobBtn">Save</button>
+                    <button type="button" class="btn btn-primary" id="saveJobBtnAdd">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for editing exisitng job -->
+    <div class="modal fade" id="editJobModal" tabindex="-1" aria-labelledby="editJobModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editJobModalLabel">Edit Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="roleInput" class="form-label">Role</label>
+                        <input type="text" class="form-control" id="EroleInput">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descriptionInput" class="form-label">Description</label>
+                        <textarea class="form-control" id="EdescriptionInput" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveJobBtnEdit">Save</button>
                 </div>
             </div>
         </div>
@@ -254,30 +279,47 @@
             // Function to handle editing of role and description
             function handleEditButtonClick(title, role, description) {
                 // Populate the modal with current role and description
-                document.getElementById('roleInput').value = role;
-                document.getElementById('descriptionInput').value = description;
+                document.getElementById('EroleInput').value = role;
+                document.getElementById('EdescriptionInput').value = description;
 
                 // Show the modal for editing
-                const modal = new bootstrap.Modal(document.getElementById('addJobModal'));
+                const modal = new bootstrap.Modal(document.getElementById('editJobModal'));
                 modal.show();
 
                 // Event listener for "Save Changes" button inside the modal
-                document.getElementById('saveJobBtn').addEventListener('click', function () {
+                document.getElementById('saveJobBtnEdit').addEventListener('click', function () {
                     // Retrieve edited role and description from inputs
-                    const editedRole = document.getElementById('roleInput').value.trim();
-                    const editedDescription = document.getElementById('descriptionInput').value.trim();
+                    const editedRole = document.getElementById('EroleInput').value.trim();
+                    const editedDescription = document.getElementById('EdescriptionInput').value.trim();
 
-                    // Update the role and description of the card
-                    const card = document.querySelector(`.card:has(.card-title:contains(${title}))`);
-                    card.querySelector('.card-text').textContent = editedRole;
-                    card.querySelector('.card-description').textContent = editedDescription;
+                    // Find the card element containing the specified title
+                    const cards = document.querySelectorAll('.card');
+                    let selectedCard = null;
+                    cards.forEach(card => {
+                        const cardTitle = card.querySelector('.card-title');
+                        if (cardTitle && cardTitle.textContent.trim() === title) {
+                            selectedCard = card;
+                        }
+                    });
+
+                    // Check if a matching card was found
+                    if (selectedCard) {
+                        // Update the role and description of the card
+                        const cardText = selectedCard.querySelector('.card-text');
+                        const cardDescription = selectedCard.querySelector('.card-description');
+                        if (cardText && cardDescription) {
+                            cardText.textContent = editedRole;
+                            cardDescription.textContent = editedDescription;
+                        }
+                    }
+
 
                     // Close the modal
                     modal.hide();
 
                     // Clear input fields for next use
-                    document.getElementById('roleInput').value = '';
-                    document.getElementById('descriptionInput').value = '';
+                    document.getElementById('EroleInput').value = '';
+                    document.getElementById('EdescriptionInput').value = '';
                 });
             }
 
@@ -308,34 +350,6 @@
                             handleEditButtonClick(title, role, description);
                         });
 
-                        // document.getElementById('giveInterviewBtn').addEventListener('click', function () {
-                        //     const encodedTitle = encodeURIComponent(title);
-                        //     const encodedRole = encodeURIComponent(role);
-                        //     const encodedJobDescription = encodeURIComponent(description);
-
-                        //     fetch("/interview", {
-                        //         method: "POST",
-                        //         body: JSON.stringify({
-                        //             job_description: encodedJobDescription,
-                        //             title: encodedTitle,
-                        //             role: encodedRole
-                        //         }),
-                        //         headers: {
-                        //             "Content-Type": "application/json"
-                        //         },
-                        //     })
-                        //     .then(response => {
-                        //         if (response.ok) {
-                        //             window.location.href = "/templates/InterviewBot.html"; // Redirect to InterviewBot.html
-                        //         } else {
-                        //             // Handle error if needed
-                        //             console.error('Error:', response.statusText);
-                        //         }
-                        //     })
-                        //     .catch(error => {
-                        //         console.error('Error:', error);
-                        //     });
-                        // });
                         document.getElementById('giveInterviewBtn').addEventListener('click', function () {
                             const encodedTitle = encodeURIComponent(title);
                             const encodedRole = encodeURIComponent(role);
@@ -354,7 +368,7 @@
             }
 
             // Event listener for clicking the save button
-            document.getElementById('saveJobBtn').addEventListener('click', function () {
+            document.getElementById('saveJobBtnAdd').addEventListener('click', function () {
                 // Retrieve role and description from inputs
                 const description = document.getElementById('descriptionInput').value.trim();
                 const company_name = "Gaditek";
