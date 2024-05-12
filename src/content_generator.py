@@ -21,6 +21,7 @@ from src.emotion_analyzer import EmotionAnalyzer
 
 
 class ContentGenerator:
+    
     """
     A class to generate content based on a prompt using Google Gemini AI.
     """
@@ -56,9 +57,9 @@ class ContentGenerator:
         cleaned_ques = cleaned_ques.replace("\n", " ")
         cleaned_ques = cleaned_ques.replace("*", " ")
         # check if there are atmost 3 words before a comma, if so then remove till the comma
-        print(cleaned_ques)
+        print("__Python Print__", cleaned_ques)
         cleaned_ques = re.sub(r'^(\w+[ ]?),', '', cleaned_ques)
-        print(cleaned_ques)
+        print("__Python Print__", cleaned_ques)
 
         return cleaned_ques
     
@@ -139,7 +140,7 @@ class ContentGenerator:
             self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
             self.score_logger.log_message(f"Total score: {total_score:.2f}%")
            
-        print(f"Total score: {total_score:.2f}%")
+        print(f"__Python Print__ Total score: {total_score:.2f}%")
         self.score_logger.log_message(f"Total score: {total_score:.2f}%")
         return total_score
     
@@ -155,13 +156,13 @@ class ContentGenerator:
             str: The interview question related to the emotion at the specified index.
         """
         if question_index < 0 or question_index >= len(self.emotions):
-            return "No more questions."
+            return -1, 'none', "No more questions, The interview has ended."
 
         emotion = self.emotions[question_index]
         prompt = f"Suppose you are conducting an behavorial interview, based on the emotion '{emotion}', you just have to ask a behavioral question (no headings, just a single question) related to this job?\n\nJob Description:\n{job_desc}\n\n"
         question = self.model.generate_content(prompt).text
         cleaned_question = self.clean_question(question)
-        return emotion, cleaned_question
+        return 0, emotion, cleaned_question
     
     def score_answer(self, emotion: str, answer: str):
         """
@@ -199,7 +200,7 @@ class ContentGenerator:
         else:  # Neutral emotion
             current_score = score * 75.0  if score is not None else 0.0
         self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
-        print(current_score)
+        print("__Python Print__", current_score)
         return current_score
     
 if __name__ == "__main__":
