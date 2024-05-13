@@ -2,6 +2,7 @@
 import os
 import re
 creds_path = "src/CREDS.py"
+import math
 assert os.path.isfile(creds_path), "\n\nsrc.CREDS is not present in the folder\n Ask Ashad for the file\n\n"
 
 from src.CREDS import GOOGLE_GEMINI_API_KEY
@@ -116,26 +117,26 @@ class ContentGenerator:
             top_emotion, score = self.emotion_analyzer.analyze_response_emotion(emotion, user_answer)
             if emotion in self.positive_emotions and top_emotion in self.positive_emotions:
                 if score >= 0.5:  # Positive response to positive emotion
-                    current_score = score * 100.0  # Good score
+                    current_score = score * 10.0  # Good score
                 else:  # Negative response to positive emotion
-                    current_score = score * -50.0  # Bad score
+                    current_score = score * -5.0  # Bad score
             elif emotion in self.positive_emotions and top_emotion in self.negative_emotions:
                 if score >= 0.5:
-                    current_score = score * -100.0
+                    current_score = score * -10.0
                 else:
-                    current_score = score * 50.0
+                    current_score = score * 5.0
             elif emotion in self.negative_emotions and top_emotion in self.negative_emotions:
                 if score >= 0.5:
-                    current_score = score * -100.0
+                    current_score = score * -10.0
                 else:
-                    current_score = score * 50.0
+                    current_score = score * 5.0
             elif emotion in self.negative_emotions and top_emotion in self.positive_emotions:
                 if score >= 0.5:
-                    current_score = score * 100.0
+                    current_score = score * 10.0
                 else:
-                    current_score = score * -50.0
+                    current_score = score * -5.0
             else:  # Neutral emotion
-                current_score = score * 75.0  # Neutral score
+                current_score = score * 7.5  # Neutral score
             total_score += current_score / (i + 1)
             self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
             self.score_logger.log_message(f"Total score: {total_score:.2f}%")
@@ -179,29 +180,37 @@ class ContentGenerator:
         print(top_emotion, score)
         if emotion in self.positive_emotions and top_emotion in self.positive_emotions:
             if score >= 0.5:  # Positive response to positive emotion
-                current_score = score * 100.0  # Good score
+                current_score = score * 10.0  # Good score
             else:  # Negative response to positive emotion
-                current_score = score * -50.0  # Bad score
+                current_score = score * -5.0  # Bad score
         elif emotion in self.positive_emotions and top_emotion in self.negative_emotions:
             if score >= 0.5:
-                current_score = score * -100.0
+                current_score = score * -10.0
             else:
-                current_score = score * 50.0
+                current_score = score * 5.0
         elif emotion in self.negative_emotions and top_emotion in self.negative_emotions:
             if score >= 0.5:
-                current_score = score * -100.0
+                current_score = score * -10.0
             else:
-                current_score = score * 50.0
+                current_score = score * 5.0
         elif emotion in self.negative_emotions and top_emotion in self.positive_emotions:
             if score >= 0.5:
-                current_score = score * 100.0
+                current_score = score * 10.0
             else:
-                current_score = score * -50.0
+                current_score = score * -5.0
         else:  # Neutral emotion
-            current_score = score * 75.0  if score is not None else 0.0
+            current_score = score * 7.5  if score is not None else 0.0
+        total_score = current_score * math.log10(len(answer.split()))  # Adjust score based on answer length
+        if total_score <= 0.0:
+            total_score = 0.0
+        if total_score >= 10.0:
+            if current_score < 8.0:
+                total_score = 8.0
+            else:
+                total_score = 10.0
         self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
         print("__Python Print__", current_score)
-        return current_score
+        return total_score
     
 if __name__ == "__main__":
     content_generator = ContentGenerator()
