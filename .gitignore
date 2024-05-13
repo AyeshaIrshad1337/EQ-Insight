@@ -1,6 +1,8 @@
 venv
 __pycache__
-
+env
+eq-insight
+py10
 
 #private files and folders
 divided/
