@@ -215,7 +215,7 @@ class ContentGenerator:
             else:
                 total_score = 10.0
         self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
-        return total_score
+        return total_score*10
     
     def get_report(self, chat_history: List[Dict[str, str]]) -> str:
         """
