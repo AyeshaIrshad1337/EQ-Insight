@@ -1,0 +1,37 @@
+<?php
+session_start();
+include("connect.php");
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <div style="text-align:center; padding:15%;">
+      <p  style="font-size:50px; font-weight:bold;">
+       Hello  <?php 
+       if(isset($_SESSION['email']) && isset($_SESSION['toggleState'])){
+        $email=$_SESSION['email'];
+        $toggleState = $_SESSION['toggleState'];
+        if ($toggleState == 'User') {
+            $query = mysqli_query($conn, "SELECT applicant.* FROM `applicant` WHERE `email`='$email'");
+        } elseif ($toggleState == 'HR') {
+            $query = mysqli_query($conn, "SELECT hr.* FROM `hr` WHERE `email`='$email'");
+        }
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+       :)
+      </p>
+      <a href="logout.php">Logout</a>
+    </div>
+</body>
+</html>

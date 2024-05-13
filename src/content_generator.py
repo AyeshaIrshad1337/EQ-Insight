@@ -234,7 +234,7 @@ class ContentGenerator:
             score = chat['score']
             report += f"Question {i + 1}:\n{question}\n\nAnswer:\n{answer}\n\nScore: {score:.2f}%\n\n"
             
-        report = self.generate_report(report)
+        report = self.generate_report(report).replace('*','')
         return report
     
     def generate_report(self, chat_history: str):
