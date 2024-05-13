@@ -1,6 +1,6 @@
 ## Running the Project
 
-To run the project, follow these steps:
+To run the project, follow these steps:  
 **Note :** *Use Python 3.10*   
 1. Clone the repository:
 
