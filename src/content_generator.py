@@ -3,6 +3,7 @@ import os
 import re
 creds_path = "src/CREDS.py"
 import math
+import datetime
 assert os.path.isfile(creds_path), "\n\nsrc.CREDS is not present in the folder\n Ask Ashad for the file\n\n"
 
 from src.CREDS import GOOGLE_GEMINI_API_KEY
@@ -12,6 +13,7 @@ if not GOOGLE_GEMINI_API_KEY or GOOGLE_GEMINI_API_KEY == "YOUR_API_KEY_HERE":
 
 # os.environ["GOOGLE_API_KEY"] = GOOGLE_GEMINI_API_KEY
 
+
 import random
 import logging
 from typing import List, Tuple, Dict
@@ -20,6 +22,9 @@ from IPython.display import Markdown
 from src.logger import Logger, log_time
 from src.emotion_analyzer import EmotionAnalyzer
 
+
+def get_today_date():
+    return datetime.datetime.now().strftime("%Y-%m-%d")
 
 class ContentGenerator:
     
@@ -156,7 +161,8 @@ class ContentGenerator:
         Returns:
             str: The interview question related to the emotion at the specified index.
         """
-        if question_index < 0 or question_index >= len(self.emotions):
+        print(question_index)
+        if question_index < 0 or question_index >= 5:
             return -1, 'none', "No more questions, The interview has ended."
 
         emotion = self.emotions[question_index]
@@ -165,7 +171,7 @@ class ContentGenerator:
         cleaned_question = self.clean_question(question)
         return 0, emotion, cleaned_question
     
-    def score_answer(self, emotion: str, answer: str):
+    def score_answer(self, emotion: str, answer: str) -> float:
         """
         Score the answer based on the inferred emotion.
 
@@ -209,9 +215,39 @@ class ContentGenerator:
             else:
                 total_score = 10.0
         self.score_logger.log_message(f"Score for emotion '{emotion}': {current_score:.2f}%")
-        print("__Python Print__", current_score)
         return total_score
     
+    def get_report(self, chat_history: List[Dict[str, str]]) -> str:
+        """
+        Generate a report based on the chat history.
+
+        Args:
+            chat_history (List[Tuple[str, str]]): The chat history containing the questions and answers.
+
+        Returns:
+            str: A report summarizing the chat history.
+        """
+        report = ""
+        for i, chat in enumerate(chat_history):
+            question = chat['question']
+            answer = chat['answer']
+            score = chat['score']
+            report += f"Question {i + 1}:\n{question}\n\nAnswer:\n{answer}\n\nScore: {score:.2f}%\n\n"
+            
+        report = self.generate_report(report)
+        return report
+    
+    def generate_report(self, chat_history: str):
+        """
+        Use gemini to generate a detailed report about the itnerview
+
+        Args:
+            chat_history (str): The chat history containing the questions and answers.
+        """
+        prompt = f"You are a hiring manager conducting an interview. Based on the chat history, generate a detailed report (email) about the interview. Date: {get_today_date()}\n\nChat History:\n{chat_history}\n\n"
+        response = self.model.generate_content(prompt).text
+        return response
+        
 if __name__ == "__main__":
     content_generator = ContentGenerator()
     emotion = content_generator.generate_emotion()
@@ -237,6 +273,48 @@ Seeking a Software Engineer to develop high-quality software solutions in collab
 **How to Apply:**
 Submit resume and cover letter to [Contact Information].
 """
-    emotion, question = content_generator.interview_question(job_desc, 1)
-    answer = input("Enter: ")
-    print(content_generator.score_answer(emotion, answer))
+    # emotion, question = content_generator.interview_question(job_desc, 1)
+    # answer = input("Enter: ")
+    # print(content_generator.score_answer(emotion, answer))
+    chat_hiroty = [
+    {
+        "question": "You've been working on a critical project for months, and suddenly your team leader decides to change the project direction. How would you handle this change emotionally?",
+        "answer": "I would be really mad and probably just quit. It's not fair to change everything last minute.",
+        "score": 2.0
+    },
+    {
+        "question": "You encounter a bug in the code that you've been working on for days, and the deadline is looming. Describe how you would manage the frustration and pressure.",
+        "answer": "I would panic and stress out. Bugs are the worst, and I hate dealing with them.",
+        "score": 1.5
+    },
+    {
+        "question": "You receive harsh criticism from a colleague during a code review. How do you handle the emotional impact and ensure it doesn't affect your motivation?",
+        "answer": "I would just ignore them. They probably don't know what they're talking about anyway.",
+        "score": 2.5
+    },
+    {
+        "question": "Your project gets delayed due to unforeseen technical challenges, causing frustration among team members. How would you manage the team's emotions and maintain morale?",
+        "answer": "I would tell everyone to stop complaining and just get back to work. We have a job to do.",
+        "score": 3.0
+    },
+    {
+        "question": "You're working on a project where your ideas are not being considered by the team, leading to feelings of being undervalued. How would you address this emotional challenge?",
+        "answer": "I would probably just stop contributing altogether. If they don't appreciate my ideas, then why bother?",
+        "score": 2.0
+    },
+    {
+        "question": "You successfully deliver a project ahead of schedule, but your contribution is not acknowledged by the management. How would you handle feelings of disappointment and underappreciation?",
+        "answer": "I would complain to my manager about not getting credit. It's not fair that others get recognized and I don't.",
+        "score": 2.5
+    },
+    {
+        "question": "Your project encounters a major setback, and you're worried about the impact on your reputation within the company. How would you manage feelings of anxiety and self-doubt?",
+        "answer": "I would probably just start looking for another job. I don't want to be associated with failure.",
+        "score": 2.0
+    }
+]
+
+
+    os.makedirs("TestReports", exist_ok=True)
+    with open("TestReports/test2.txt", "w") as file:
+        file.write(content_generator.get_report(chat_history=chat_hiroty))

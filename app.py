@@ -39,6 +39,7 @@ def interviewer():
 @app.route('/interview-runner', methods=['POST'])
 def interview_runner():
     session['current_question_index'] = session.get('current_question_index', 0)
+    
     flag = request.json.get('flag')
 
     if request.method == 'POST' and flag == '1':
