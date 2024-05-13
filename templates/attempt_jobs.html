@@ -52,7 +52,7 @@
     <hr>
     <div class="container TeamDiv">
         <!-- Add more cards here -->
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card01" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -70,7 +70,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card02" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -88,7 +88,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card03" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -106,7 +106,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card04" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -124,7 +124,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card05" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -142,7 +142,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card06" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -160,7 +160,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card07" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -178,7 +178,7 @@
                 <p class="card-text">FrontEnd Developer</p>
             </div>
         </div>
-        <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+        <div class="card" style="width: 12.7rem;" data-card-id="card08" data-bs-toggle="modal" data-bs-target="#jobModal">
             <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, beatae aliquam.
                 Inventore, similique, earum, consequatur vero labore aut itaque aliquam ipsam impedit nulla ea doloremque
                 aperiam quaerat fugiat repellendus explicabo! Impedit rem at magnam ea. Porro, saepe, ullam voluptates
@@ -202,221 +202,186 @@
     <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header d-flex justify-content-between">
-                    <h5 class="modal-title" id="jobModalLabel">Job Description</h5>
-                    <button type="button" class="btn btn-primary" id="editBtn">Edit</button>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body" id="jobModalBody">
-                    <!-- Content will be dynamically populated here -->
-                    <!-- Editable fields -->
-                    <div id="editableFields">
-                        <div class="mb-3">
-                            <label for="roleInput" class="form-label">Role</label>
-                            <input type="text" class="form-control" id="roleInput" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descriptionInput" class="form-label">Description</label>
-                            <textarea class="form-control" id="descriptionInput" rows="3" readonly></textarea>
-                        </div>
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h5 class="modal-title" id="jobModalLabel">Job Details</h5>
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-primary me-2" id="editBtn" onclick="handleEditButtonClick(event)">Edit</button>
+                        <button type="button" class="btn-close mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
+                <div class="modal-body" id="jobModalBody">
+                    <!-- Modal content will be populated dynamically -->
+                </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
                     <button type="button" class="btn btn-primary giveInterviewBtn" id="giveInterviewBtn">Give Interview</button>
                 </div>
             </div>
         </div>
     </div>
 
-
     <!-- Button with write icon at bottom right -->
     <button type="button" class="btn btn-primary write-btn position-fixed bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#addJobModal">
         <i class="bi bi-pencil-fill"></i>
     </button>
 
-    <!-- Modal for adding new job -->
+    <!-- Modal for adding a new job -->
     <div class="modal fade" id="addJobModal" tabindex="-1" aria-labelledby="addJobModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addJobModalLabel">Add Job</h5>
+                    <h5 class="modal-title" id="addJobModalLabel">Add New Job</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="roleInput" class="form-label">Role</label>
-                        <input type="text" class="form-control" id="roleInput">
-                    </div>
-                    <div class="mb-3">
-                        <label for="descriptionInput" class="form-label">Description</label>
-                        <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
-                    </div>
+                    <form id="addJobForm">
+                        <div class="mb-3">
+                            <label for="titleInput" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="titleInput" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roleInput" class="form-label">Role</label>
+                            <input type="text" class="form-control" id="roleInput" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionInput" class="form-label">Description</label>
+                            <textarea class="form-control" id="descriptionInput" rows="3" required></textarea>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveJobBtnAdd">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for editing exisitng job -->
-    <div class="modal fade" id="editJobModal" tabindex="-1" aria-labelledby="editJobModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editJobModalLabel">Edit Job</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="roleInput" class="form-label">Role</label>
-                        <input type="text" class="form-control" id="EroleInput">
-                    </div>
-                    <div class="mb-3">
-                        <label for="descriptionInput" class="form-label">Description</label>
-                        <textarea class="form-control" id="EdescriptionInput" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveJobBtnEdit">Save</button>
+                    <button type="button" class="btn btn-primary" id="saveJobBtn">Save Job</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Attach event listeners to existing job cards
-            attachEventListenersToJobCards();
-
-            // Function to handle editing of role and description
-            function handleEditButtonClick(title, role, description) {
-                // Populate the modal with current role and description
-                document.getElementById('EroleInput').value = role;
-                document.getElementById('EdescriptionInput').value = description;
-
-                // Show the modal for editing
-                const modal = new bootstrap.Modal(document.getElementById('editJobModal'));
-                modal.show();
-
-                // Event listener for "Save Changes" button inside the modal
-                document.getElementById('saveJobBtnEdit').addEventListener('click', function () {
-                    // Retrieve edited role and description from inputs
-                    const editedRole = document.getElementById('EroleInput').value.trim();
-                    const editedDescription = document.getElementById('EdescriptionInput').value.trim();
-
-                    // Find the card element containing the specified title
-                    const cards = document.querySelectorAll('.card');
-                    let selectedCard = null;
-                    cards.forEach(card => {
-                        const cardTitle = card.querySelector('.card-title');
-                        if (cardTitle && cardTitle.textContent.trim() === title) {
-                            selectedCard = card;
-                        }
-                    });
-
-                    // Check if a matching card was found
-                    if (selectedCard) {
-                        // Update the role and description of the card
-                        const cardText = selectedCard.querySelector('.card-text');
-                        const cardDescription = selectedCard.querySelector('.card-description');
-                        if (cardText && cardDescription) {
-                            cardText.textContent = editedRole;
-                            cardDescription.textContent = editedDescription;
-                        }
-                    }
-
-
-                    // Close the modal
-                    modal.hide();
-
-                    // Clear input fields for next use
-                    document.getElementById('EroleInput').value = '';
-                    document.getElementById('EdescriptionInput').value = '';
-                });
-            }
-
-            // Function to attach event listeners to job cards
-            function attachEventListenersToJobCards() {
-                document.querySelectorAll('.card').forEach(card => {
-                    card.addEventListener('click', function () {
-                        const title = this.querySelector('.card-title').textContent.trim();
-                        const role = this.querySelector('.card-text').textContent.trim();
-                        const description = this.querySelector('.card-description').textContent.trim();
-
-                        // Construct the content to display in the modal
-                        const modalContent = `<h5>${title}</h5>
-                                            <p><strong>Role:</strong> ${role}</p>
-                                            <hr>
-                                            <p>${description}</p>`;
-
-                        // Set the content in the modal body
-                        document.getElementById('jobModalBody').innerHTML = modalContent;
-
-                        // Show the modal
-                        const modal = new bootstrap.Modal(document.getElementById('jobModal'));
-                        modal.show();
-
-
-
-                        document.getElementById('giveInterviewBtn').addEventListener('click', function () {
-                            const encodedTitle = encodeURIComponent(title);
-                            const encodedRole = encodeURIComponent(role);
-                            const encodedJobDescription = encodeURIComponent(description);
-
-                            // Store data in local storage
-                            localStorage.setItem('job_description', encodedJobDescription);
-                            localStorage.setItem('title', encodedTitle);
-                            localStorage.setItem('role', encodedRole);
-
-                            // Redirect to interview API to reach InterviewBot.html
-                            window.location.href = "/interview";
-                        });
-                    });
-                });
-            }
-
-            // Event listener for clicking the save button
-            document.getElementById('saveJobBtnAdd').addEventListener('click', function () {
-                // Retrieve role and description from inputs
-                const description = document.getElementById('descriptionInput').value.trim();
-                const company_name = "Gaditek";
-                const role = document.getElementById('roleInput').value.trim();
-
-                if (role !== '' && description !== '') {
-                    // Create a new card with the entered data
-                    const newCard = `
-                        <div class="card" style="width: 12.7rem;">
-                            <p class="card-description">${description}</p>
-                            <div class="card-body">
-                                <h5 class="card-title">${company_name}</h5>
-                                <p class="card-text">${role}</p>
-                            </div>
-                        </div>
+        // Function to attach event listeners to job cards
+        function attachEventListenersToJobCards() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const description = card.querySelector('.card-description').innerHTML;
+                    const title = card.querySelector('.card-title').innerHTML;
+                    const role = card.querySelector('.card-text').innerHTML;
+                    const modalBody = document.getElementById('jobModalBody');
+                    modalBody.innerHTML = `
+                        <h5>${title}</h5>
+                        <p><strong>Role:</strong> ${role}</p>
+                        <hr>
+                        <p>${description}</p>
                     `;
-
-                    // Append the new card to the container
-                    document.querySelector('.TeamDiv').innerHTML += newCard;
-
-                    // Close the modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('addJobModal'));
-                    modal.hide();
-
-                    // Clear input fields for next use
-                    document.getElementById('roleInput').value = '';
-                    document.getElementById('descriptionInput').value = '';
-
-                    // Attach event listeners to the newly added job card
-                    attachEventListenersToJobCards();
-                } else {
-                    alert('Please enter both role and description.');
-                }
+                    clickedCard = card; // Update the clickedCard variable
+                    console.log(clickedCard)
+                });
             });
+        }
+    
+        // Call the function to attach event listeners to existing job cards
+        attachEventListenersToJobCards();
+    
+        // Function to handle edit button click
+        function handleEditButtonClick(event) {
+            if (!clickedCard) {
+                return;
+            }
+    
+            const card = clickedCard;
+            const description = card.querySelector('.card-description').innerHTML;
+            const title = card.querySelector('.card-title').innerHTML;
+            const role = card.querySelector('.card-text').innerHTML;
+
+            console.log("Editing:", card)
+    
+            const modalBody = document.getElementById('jobModalBody');
+            modalBody.innerHTML = `
+                <label for="editTitle">Title:</label>
+                <input type="text" class="form-control mb-3" id="editTitle" value="${title}">
+                <label for="editRole">Role:</label>
+                <input type="text" class="form-control mb-3" id="editRole" value="${role}">
+                <label for="editDescription">Description:</label>
+                <textarea class="form-control" id="editDescription" rows="3" height=max-content>${description}</textarea>
+            `;
+            document.getElementById('saveChangesBtn').style.display = 'block';
+    
+            document.getElementById('saveChangesBtn').addEventListener('click', () => {
+                const editedTitle = document.getElementById('editTitle').value;
+                const editedRole = document.getElementById('editRole').value;
+                const editedDescription = document.getElementById('editDescription').value;
+    
+                card.querySelector('.card-title').innerHTML = editedTitle;
+                card.querySelector('.card-text').innerHTML = editedRole;
+                card.querySelector('.card-description').innerHTML = editedDescription;
+    
+                const modal = bootstrap.Modal.getInstance(document.getElementById('jobModal'));
+                console.log("Saving:", card)
+                modal.hide();
+            });
+        }
+    
+        // Function to add a new job posting
+        document.getElementById('saveJobBtn').addEventListener('click', function () {
+            const title = document.getElementById('titleInput').value;
+            const role = document.getElementById('roleInput').value;
+            const description = document.getElementById('descriptionInput').value;
+            
+            const newCard = `
+                <div class="card" style="width: 12.7rem;" data-bs-toggle="modal" data-bs-target="#jobModal">
+                    <p class="card-description">${description}</p>
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${role}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.TeamDiv').insertAdjacentHTML('beforeend', newCard);
+    
+            // Attach event listener only to the newly created card
+            const newCardElement = document.querySelector('.TeamDiv').lastElementChild;
+            newCardElement.addEventListener('click', () => {
+                const description = newCardElement.querySelector('.card-description').innerHTML;
+                const title = newCardElement.querySelector('.card-title').innerHTML;
+                const role = newCardElement.querySelector('.card-text').innerHTML;
+                const modalBody = document.getElementById('jobModalBody');
+                modalBody.innerHTML = `
+                    <h5>${title}</h5>
+                    <p><strong>Role:</strong> ${role}</p>
+                    <hr>
+                    <p>${description}</p>
+                `;
+                clickedCard = newCardElement; // Update the clickedCard variable
+            });
+    
+            document.getElementById('titleInput').value = '';
+            document.getElementById('roleInput').value = '';
+            document.getElementById('descriptionInput').value = '';
         });
-    </script>
-        
-        
+    
+        // document.getElementById('editBtn').addEventListener('click', handleEditButtonClick);
+    
+        document.getElementById('giveInterviewBtn').addEventListener('click', function () {
+            if (!clickedCard) {
+                return;
+            }
+    
+            const description = clickedCard.querySelector('.card-description').innerHTML;
+            const title = clickedCard.querySelector('.card-title').innerHTML;
+            const role = clickedCard.querySelector('.card-text').innerHTML;
+    
+            const encodedTitle = encodeURIComponent(title);
+            const encodedRole = encodeURIComponent(role);
+            const encodedJobDescription = encodeURIComponent(description);
+    
+            localStorage.setItem('job_description', encodedJobDescription);
+            localStorage.setItem('title', encodedTitle);
+            localStorage.setItem('role', encodedRole);
+    
+            window.location.href = "/interview";
+        });
+    </script>    
+    
 </body>
 
 </html>
