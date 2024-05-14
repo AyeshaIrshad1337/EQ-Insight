@@ -10,7 +10,7 @@
 <body>
     <div class="container" id="signup" style="display:none;">
       <h1 class="form-title">Register</h1>
-      <form method="post" action="register.php">
+      <form method="post" action="/main">
 
         <div id="cb-label-signup">
             <span id="toggle-state-signup">User</span>
@@ -46,7 +46,8 @@
           <input type="text" name="companyName" id="companyName" placeholder="Company Name">
           <label for="companyName">Company Name</label>
         </div>
-       <input type="submit" class="btn" value="Sign Up" name="signUp">
+        <input type="submit" class="btn" value="Sign Up" name="signUp" id="signupButton">
+
       </form>
       <p class="or">
         ----------or--------
@@ -97,9 +98,32 @@
         </div>
         <div class="links">
           <p>Don't have account yet?</p>
-          <button id="signUpButton">Sign Up</button>
+          <button id="signUpButton" window.location.href = "/main">Sign Up</button>
         </div>
       </div>
       <script src="/static/PHPscript.js"></script>
+      <script>
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const fName = document.getElementById('fName').value;
+  const email = document.getElementById('email').value;
+  const companyName = document.getElementById('companyName').value;
+  const toggleStateSignup = document.getElementById('toggleStateSignup').value;
+
+  const signupData = {
+    fName,
+    email,
+    companyName,
+    toggleStateSignup
+  };
+
+  localStorage.setItem('signupData', JSON.stringify(signupData));
+
+  // Redirect to /main
+  window.location.href = "/main";
+});
+</script>
+
 </body>
 </html>

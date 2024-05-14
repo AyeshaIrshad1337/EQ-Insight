@@ -33,6 +33,21 @@
         .InterviewBot-Container {
             display: flex;
         }
+        
+        .goback {
+            border: none;
+            background-color: #10a2a4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .goback i {
+            margin-right: 5px;
+        }
 
         .score-bars-container {
             margin-top: 20px;
@@ -45,7 +60,7 @@
             padding: 30px;
             font-weight: 200;
             overflow: overlay;
-            height: 44rem;
+            height: max-content;
             border: 1px solid lightgrey;
         }
 
@@ -97,7 +112,7 @@
         }
 
         .Primary-Section {
-            height: 100vh;
+            height: 88vh;
             padding: 50px 10px;
         }
 
@@ -467,7 +482,9 @@
     </head>
 
     <body>
-
+        <button class="goback" onclick="goBack()">
+            <i class="bi bi-arrow-left"></i> Go Back
+        </button>
         <div class="container-fluid InterviewBot-Container">
 
             <div class="Score d-lg-flex d-none col-lg-3" id="score">
@@ -479,33 +496,12 @@
                         <div class="score-name">Evaluation Score</div>
                         <div class="score-number"><span
                                 class="score-number-obtained" id="Eval_Score"></span>
-                            / 10.0</div>
+                            / 100%</div>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped
                                 progress-bar-animated" id="Eval_Score-bar"></div>
                         </div>
                     </div>
-                    <!-- <div class="score-group">
-                        <div class="score-name">Understanding</div>
-                        <div class="score-number"><span
-                                class="score-number-obtained"
-                                id="understanding"></span> / 10.0
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped
-                                progress-bar-animated" id="und-bar"></div>
-                        </div>
-                    </div>
-                    <div class="score-group">
-                        <div class="score-name">AI Score</div>
-                        <div class="score-number"><span
-                                class="score-number-obtained" id="AIscore"></span>
-                            / 10.0</div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped
-                                progress-bar-animated" id="ai-bar"></div>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="score-prompt-container">
                     <div class="score-prompt">
@@ -547,7 +543,7 @@
                                 <div class="score-name">Evaluation Score</div>
                                 <div class="score-number"><span
                                         class="score-number-obtained"
-                                        id="Eval_Score2"></span> / 10.0
+                                        id="Eval_Score2"></span> / 100%
                                 </div>
                                 <div class="progress">
                                     <div class="progress-bar
@@ -556,33 +552,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="score-group">
-                                <div class="score-name">Understanding</div>
-                                <div class="score-number"><span
-                                        class="score-number-obtained"
-                                        id="understanding2"></span>
-                                    /
-                                    10.0
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar
-                                        progress-bar-striped
-                                        progress-bar-animated" id="und-bar2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="score-group">
-                                <div class="score-name">AI Score</div>
-                                <div class="score-number"><span
-                                        class="score-number-obtained"
-                                        id="AIscore2"></span> / 10.0
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar
-                                        progress-bar-striped
-                                        progress-bar-animated" id="ai-bar2"></div>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="score-prompt-container">
                             <div class="score-prompt">
@@ -735,6 +704,10 @@
         //     .catch(error => console.error(error));
         // }
 
+
+    function goBack(){
+        window.location.href = '/jobs_stud';
+    }   
 
 
     /* VOICE INPUT */
