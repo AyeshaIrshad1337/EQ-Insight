@@ -85,6 +85,8 @@ def interview_runner():
                 question = "The interview has ended."
 
                 report = content_generator.get_report(chat_history)
+                if not chat_history:
+                    return jsonify({'question': question, "flag": flag}), 200
                 send_mail("k213218@nu.edu.pk", report)
 
                 return jsonify({'question': question, "flag": flag}), 200
@@ -99,6 +101,8 @@ def interview_runner():
         question = "Stop Button pressed, The interview has ended."
 
         report = content_generator.get_report(chat_history)
+        if not chat_history:
+            return jsonify({'question': question}), 200
         send_mail("k213218@nu.edu.pk", report)
 
         return jsonify({'question': question}), 200

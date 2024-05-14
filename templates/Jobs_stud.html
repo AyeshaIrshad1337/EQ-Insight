@@ -215,7 +215,7 @@
     </div>
 
     <!-- Button with write icon at bottom right -->
-    <button type="button" class="btn btn-primary write-btn position-fixed bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#addJobModal">
+    <button id = "addJobber" type="button" class="btn btn-primary write-btn position-fixed bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#addJobModal">
         <i class="bi bi-pencil-fill"></i>
     </button>
 
@@ -249,8 +249,34 @@
             </div>
         </div>
     </div>
-
     <script>
+
+        var firstName;
+        var email;
+        var companyName;
+        var toggleStateSignup;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupData = localStorage.getItem('signupData');
+            if (signupData) {
+                const data = JSON.parse(signupData);
+
+                // Storing data in variables
+                firstName = data.fName;
+                email = data.email;
+                companyName = data.companyName;
+                toggleStateSignup = data.toggleStateSignup;
+            }
+        });
+
+        if (toggleStateSignup == "HR"){
+            document.getElementById('giveInterviewBtn').style.display = 'none';
+        }
+        else{
+            document.getElementById('addJobber').style.display = 'none';
+            document.getElementById('editBtn').style.display = 'none';
+        }
+
         document.getElementById('saveChangesBtn').style.display = 'none';
         // Function to attach event listeners to job cards
         function attachEventListenersToJobCards() {

@@ -244,7 +244,7 @@ class ContentGenerator:
         Args:
             chat_history (str): The chat history containing the questions and answers.
         """
-        prompt = f"You are a hiring manager conducting an interview. Based on the chat history, generate a detailed report (email) about the interview. Date: {get_today_date()}\n\nChat History:\n{chat_history}\n\n"
+        prompt = f"You are a hiring manager conducting an emotional intelligence interview. Based on the chat history, generate a detailed report (email) about the interview. Analyse and score on the basis of Goleman EQ Theory\n\nChat History:\n{chat_history}\n\n"
         response = self.model.generate_content(prompt).text
         return response
         
